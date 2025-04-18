@@ -40,31 +40,47 @@ const extractVars = (content: string, regex: RegExp) => {
 }
 
 const resolveVars = (markdown: string, regex: RegexSearchAndReplace, refsObj: object) => {
-    const varsExtracted = extractVars(markdown, regex.search)
     let content = markdown
 
-    if (!!varsExtracted && !!varsExtracted.length) {
+    // Catch empty markdown content
+    if (!content) { return content }
 
-        for (let i in varsExtracted) {
-            const varExtracted = varsExtracted[i]
-            const varName = varExtracted.replace(regex.replace, '')
-            const varValue = getVarValue(varName, refsObj);
+    const varsExtracted = extractVars(markdown, regex.search)
 
-            if (!!varValue) {
-                content = content.replace(varExtracted, varValue)
-            }
+    // Catch empty array of extracted variables
+    if (!varsExtracted || !varsExtracted.length) { return content }
+
+    for (let i in varsExtracted) {
+        const varExtracted = varsExtracted[i]
+        const varName = varExtracted.replace(regex.replace, '')
+        const varValue = getVarValue(varName, refsObj);
+
+        if (!!varValue) {
+            content = content.replace(varExtracted, varValue)
         }
     }
+
+    return content
+}
+
+const escapeAnchorChars = (markdown: string, regex: { search: RegExp, replace: RegExp | string }) => {
+    let content = markdown
+
+    // Catch empty markdown content
+    if (!content) { return content }
+    content = content.replace(rgxCurlyEscapeIncludeAnchor.search, rgxCurlyEscapeIncludeAnchor.replace)
+
     return content
 }
 
 export async function preprocessMd(markdown: string) {
 
+    let content = markdown
     // Inject external URLs into placeholders
-    const varsResolved = resolveVars(markdown, rgxCurlyIgnoreAnchor, extUrlRefs)
+    content = resolveVars(markdown, rgxCurlyIgnoreAnchor, extUrlRefs)
 
     // Excape curly braces in Heading Anchors
-    const content = varsResolved.replace(rgxCurlyEscapeIncludeAnchor.search, rgxCurlyEscapeIncludeAnchor.replace)
+    content = escapeAnchorChars(content, rgxCurlyEscapeIncludeAnchor)
 
     return content
 }
