@@ -37,7 +37,7 @@ Parameterize references to external links, using some sort of variable injection
   ```
 
 
-### Use it!
+### &#127918; Use it!
 
 This is an isolated implementation of a preprocessor for [Ethereum.org Website](https://ethereum.org/)'s content Markdown files. The folder structure matches and/or mimics the ethorg's folder structure. 
 
@@ -61,7 +61,7 @@ ethorg-markdown-preprocessor
 └── package.json
 ```
 
-### Make & Break - Files ref.
+### &#128294; Make & Break - Files ref.
 
 * `index.ts` - File that contains the calls to pick up a Markdown file and pre-process it. Creates an output file in the same `path` prepending `compiled-` to the filename.
 * `index.md` - Sample Markdown file, cloned directly from my fork of [ethereum-org-website](https://github.com/ethereum/ethereum-org-website)
@@ -70,7 +70,7 @@ ethorg-markdown-preprocessor
 * `import.ts`, `compile.ts`, `data.ts` - Minimal logic to mimic [ethereum-org-website](https://github.com/ethereum/ethereum-org-website) structure and execution.
 * `preprocess.ts` - **WiP** This is where the (_RegEx_) magic happens! 
 
-### Tools 
+### &#128295; Tools 
 
 Here are some tools that are useful (or even cool) that were used while building this:
 
