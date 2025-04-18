@@ -11,7 +11,9 @@ Parameterize references to external links, using some sort of variable injection
 
 <br>
 
-## &#128640; Instalation & Usage
+## &#128640; Installation & Usage
+
+### Get your copy
 
 1. fork the repo
 2. clone your fork
@@ -34,6 +36,9 @@ Parameterize references to external links, using some sort of variable injection
   git checkout -b new_branch_name
   ```
 
+### Use it!
+
+This is an isolated implementation of a preprocessor for [Ethereum.org Website](https://ethereum.org/)'s content Markdown files. The folder structure matches 
 
 <br>
 
