@@ -36,9 +36,47 @@ Parameterize references to external links, using some sort of variable injection
   git checkout -b new_branch_name
   ```
 
+
 ### Use it!
 
-This is an isolated implementation of a preprocessor for [Ethereum.org Website](https://ethereum.org/)'s content Markdown files. The folder structure matches 
+This is an isolated implementation of a preprocessor for [Ethereum.org Website](https://ethereum.org/)'s content Markdown files. The folder structure matches and/or mimics the ethorg's folder structure. 
+
+```md
+ethorg-markdown-preprocessor
+├── public
+│   └── content
+│       └── index.md
+├── src
+│   └── lib
+│       ├── md
+│       │   ├── compile.ts
+│       │   ├── data.ts
+│       │   ├── export.ts
+│       │   ├── import.ts
+│       │   └── preprocess.ts
+│       └── constants.ts
+├── README.md
+├── index.ts 
+├── package-lock.json
+└── package.json
+```
+
+### Make & Break - Files ref.
+
+* `index.ts` - File that contains the calls to pick up a Markdown file and pre-process it. Creates an output file in the same `path` prepending `compiled-` to the filename.
+* `index.md` - Sample Markdown file, cloned directly from my fork of [ethereum-org-website](https://github.com/ethereum/ethereum-org-website)
+* `constants.ts` - File containing the variable definitions in use. _Note: the uppermost variables defined in the file are already defined in the original, just copied here for reference+usage._
+* `export.ts` - Utility file containing the logic to export the processed md contents to a file; in the actual implementation the content us just fed to the subsequent build steps.
+* `import.ts`, `compile.ts`, `data.ts` - Minimal logic to mimic [ethereum-org-website](https://github.com/ethereum/ethereum-org-website) structure and execution.
+* `preprocess.ts` - **WiP** This is where the (_RegEx_) magic happens! 
+
+### Tools 
+
+Here are some tools that are useful (or even cool) that were used while building this:
+
+* Coffee. LOTS of coffee.
+* [RegEx101](https://regex101.com) - Build, test, explore, save & share custom RegEx
+* [Tree](https://gist.github.com/whoisryosuke/813186b07e6c9e4d23593041827a6530) - Neat little tool to ogenerate a Markdown friendly structure of your repo. Just install `brew install tree` and run `tree --gitignore --dirsfirst on the root of your project folder
 
 <br>
 
