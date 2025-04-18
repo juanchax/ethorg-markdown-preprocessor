@@ -11,7 +11,33 @@ Parameterize references to external links, using some sort of variable injection
 
 <br>
 
-## &#128163; Issue
+## &#128640; Instalation & Usage
+
+1. fork the repo
+2. clone your fork
+  ```sh
+  git clone git@github.com:[your_github_handle]/ethorg-markdown-preprocessor.git && cd ethorg-markdown-preprocessor
+  ```
+3. configure your fork
+  ```sh
+  git remote add upstream https://github.com/juanchax/ethorg-markdown-preprocessor.git
+  ```
+4. ensure your fork is up-to-date
+  ```sh
+  git checkout dev
+  git fetch upstream
+  git merge upstream/dev
+  ```
+5. install dependencies
+6. create a new branch and get your hands dirty(?)
+  ```sh
+  git checkout -b new_branch_name
+  ```
+
+
+<br>
+
+## &#128163; Issue Description
 
 Currently, the content pages contain a multitude of hardcoded link references, which of course are duplicated on the translated versions as well.
 
