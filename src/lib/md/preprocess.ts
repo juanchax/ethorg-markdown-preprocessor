@@ -63,12 +63,12 @@ const resolveVars = (markdown: string, regex: RegexSearchAndReplace, refsObj: ob
     return content
 }
 
-const escapeAnchorChars = (markdown: string, regex: { search: RegExp, replace: RegExp | string }) => {
+const escapeAnchorChars = (markdown: string, regex: { search: RegExp, replace: string }) => {
     let content = markdown
 
     // Catch empty markdown content
     if (!content) { return content }
-    content = content.replace(rgxCurlyEscapeIncludeAnchor.search, rgxCurlyEscapeIncludeAnchor.replace)
+    content = content.replace(regex.search, regex.replace)
 
     return content
 }
