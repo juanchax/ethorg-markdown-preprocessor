@@ -54,7 +54,8 @@ ethorg-markdown-preprocessor
 │       │   ├── export.ts
 │       │   ├── import.ts
 │       │   └── preprocess.ts
-│       └── constants.ts
+│       ├── constants.ts
+│       └── variables.ts
 ├── README.md
 ├── index.ts 
 ├── package-lock.json
@@ -65,7 +66,8 @@ ethorg-markdown-preprocessor
 
 * `index.ts` - File that contains the calls to pick up a Markdown file and pre-process it. Creates an output file in the same `path` prepending `compiled-` to the filename.
 * `index.md` - Sample Markdown file, cloned directly from my fork of [ethereum-org-website](https://github.com/ethereum/ethereum-org-website)
-* `constants.ts` - File containing the variable definitions in use. _Note: the uppermost variables defined in the file are already defined in the original, just copied here for reference+usage._
+* `constants.ts` - File reference since constant base URLs are referenced in the `variables` file.
+* `variables.ts` - File containing the variable refs in use in markdown content files . _Note: the uppermost variables defined in the file are already defined in the original, just copied here for reference+usage._
 * `export.ts` - Utility file containing the logic to export the processed md contents to a file; in the actual implementation the content us just fed to the subsequent build steps.
 * `import.ts`, `compile.ts`, `data.ts` - Minimal logic to mimic [ethereum-org-website](https://github.com/ethereum/ethereum-org-website) structure and execution.
 * `preprocess.ts` - **WiP** This is where the (_RegEx_) magic happens! 
@@ -142,7 +144,7 @@ The idea is to apply a _modularity mindset_ and parameterize references to exter
 
 ### &#128506; Implementation Design
 
-* `/src/lib/constants` - Append new link reference variables, exported as an object  containing for ease of import + processing
+* `/src/lib/variables` - Append new link reference variables, exported as an object  containing for ease of import + processing
 
 * `/src/lib/md/preprocess.ts` -  Contains variable preprocessing logic for the md files
 
@@ -157,13 +159,13 @@ The idea is to apply a _modularity mindset_ and parameterize references to exter
 
 ### &#x1F9C0; Naming Overview
 
-* `EXT_` + `REF_NAME` - Naming convention for new link references variables appended to the `constants.ts` file. _Variables not individually exported._
+* `EXT_` + `REF_NAME` - Naming convention for new link references variables appended to the `variables.ts` file. _Variables not individually exported._
 
 * `EXT_URLS` - Exported object to be imported for preprocessing content markdown files, making it easy to include / exclude existing variables: `{ EXT_REF_ONE, EXT_REF_TWO }`
 
 * `preprocessMd()` - Moved and renamed function previously known as `preprocessMarkdown()` &#x1F57A;
 
-* `{EXT_REF_NAME}` - Naming convention used for placeholders in the content md files. `EXT_REF_NAME` matches the variable name contained in the `constants.ts` file.
+* `{EXT_REF_NAME}` - Naming convention used for placeholders in the content md files. `EXT_REF_NAME` matches the variable name contained in the `variables.ts` file.
 
     Code has been structured to accommodate a couple different naming conventions for the placeholders: `{EXT_REF_NAME}` | `${EXT_REF_NAME}` | `{{EXT_REF_NAME}}`
 
@@ -175,7 +177,7 @@ The idea is to apply a _modularity mindset_ and parameterize references to exter
 
 | Repo | Task | Status |
 | ----------- | ----------- | ----------- |
-| Test | Implement link ref variables in constants.ts | Done |
+| Test | Implement link ref variables in variables.ts | Done |
 | Test | Implement Markdown preprocessing logic | Done |
 | Test | Implement link ref placeholders in /contributing/index.md | Done |
 | Test | Move md preprocessing to 'preprocess.ts' file | Done |
@@ -192,7 +194,7 @@ The idea is to apply a _modularity mindset_ and parameterize references to exter
 
 - [ ] Replace hardcoded urls with variable placeholders
 
-- [ ] Create any additional variables needed in 'constants.ts'
+- [ ] Create any additional variables needed in 'variables.ts'
 
 - [ ] Build local
 
