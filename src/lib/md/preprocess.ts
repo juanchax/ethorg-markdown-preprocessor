@@ -1,4 +1,4 @@
-import { EXT_URLS } from "../constants";
+import { EXT_URLS } from "../variables";
 
 const extUrlRefs = EXT_URLS
 
