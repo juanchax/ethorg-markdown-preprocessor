@@ -1,102 +1,108 @@
-import { EXT_URLS } from "../variables";
+import { EXT_URLS } from "../variables"
 
 const extUrlRefs = EXT_URLS
 
-/**  NOTE - Type RegexSearchAndReplace
-* Modular implementation to allow variable placeholder syntax
-* to be easily swapped and committed.
-* - RegEx syntax matching included:
-* ${variableName} | {variableName} | {{variableName}}
-* - Implemented: {variableName} -- Find the rest at the bottom
-*/
-
 type RegexSearchAndReplace = {
-    search: RegExp,
-    replace: RegExp
+  search: RegExp
+  replace: RegExp
 }
 
 // Match {myVar} styled placeholders
 // ignore Markdown anchors, e.g. {#myVar}
 const rgxCurlyIgnoreAnchor = {
-    search: /\{(?!#).*\}/g,
-    replace: /(\{?)(\}?)/g
-};
+  search: /\{(?!#).*\}/g,
+  replace: /(\{?)(\}?)/g,
+}
 
-// Match Markdown Headings & Excape anchors' curly
-// heading: '# Heading' - anchor: '{#anchor}'
+// Match Markdown Headings & Excape anchors' curly braces
 const rgxCurlyEscapeIncludeAnchor = {
-    search: /^(?<heading>#{1,6}.*?)\{(?<anchor>#[\w-]+)\}/gm,
-    replace: `$<heading>\\{$<anchor>\\}`
+  //REVIEW: Named capturing groups are only available when targeting 'ES2018' or later.ts(1503)
+  // search: /^(?<heading>#{1,6}.*?)\{(?<anchor>#[\w-]+)\}/gm,
+  // replace: `$<heading>\\{$<anchor>\\}`
+  search: /^(#{1,6}.*?)\{(#[\w-]+)\}/gm,
+  replace: "$1\\{$2\\}",
 }
 
 const getVarValue = (varName: string, refsObj: object) => {
-    const varValue = refsObj[varName]
-    if (!varValue) { return }
-    return varValue
+  const varValue = refsObj[varName]
+  if (!varValue) {
+    return
+  }
+  return varValue
 }
 
 const extractVars = (content: string, regex: RegExp) => {
-    return content.match(regex)
+  return content.match(regex)
 }
 
-const resolveVars = (markdown: string, regex: RegexSearchAndReplace, refsObj: object) => {
-    let content = markdown
+const resolveVars = (
+  markdown: string,
+  regex: RegexSearchAndReplace,
+  refsObj: object
+) => {
+  let content = markdown
 
-    // Catch empty markdown content
-    if (!content) { return content }
+  // Catch empty markdown content
+  if (!content) {
+    return content
+  }
 
-    const varsExtracted = extractVars(markdown, regex.search)
+  const varsExtracted = extractVars(markdown, regex.search)
 
-    // Catch empty array of extracted variables
-    if (!varsExtracted || !varsExtracted.length) { return content }
+  // Catch empty array of extracted variables
+  if (!varsExtracted || !varsExtracted.length) {
+    return content
+  }
 
-    for (let i in varsExtracted) {
-        const varExtracted = varsExtracted[i]
-        const varName = varExtracted.replace(regex.replace, '')
-        const varValue = getVarValue(varName, refsObj);
+  for (const i in varsExtracted) {
+    const varExtracted = varsExtracted[i]
+    const varName = varExtracted.replace(regex.replace, "")
+    const varValue = getVarValue(varName, refsObj)
 
-        if (!!varValue) {
-            content = content.replace(varExtracted, varValue)
-        }
+    if (varValue) {
+      content = content.replace(varExtracted, varValue)
     }
+  }
 
-    return content
+  return content
 }
 
-const escapeAnchorChars = (markdown: string, regex: { search: RegExp, replace: RegExp | string }) => {
-    let content = markdown
+//NOTE: not using deifned Type due to commend in line: 19
+const escapeAnchorChars = (
+  markdown: string,
+  regex: { search: RegExp; replace: string }
+) => {
+  let content = markdown
 
-    // Catch empty markdown content
-    if (!content) { return content }
-    content = content.replace(rgxCurlyEscapeIncludeAnchor.search, rgxCurlyEscapeIncludeAnchor.replace)
-
+  // Catch empty markdown content
+  if (!content) {
     return content
+  }
+  content = content.replace(regex.search, regex.replace)
+
+  return content
 }
 
-export async function preprocessMd(markdown: string) {
+export async function preprocessMarkdown(markdown: string) {
+  let content = markdown
+  // Inject external URLs into placeholders
+  content = resolveVars(markdown, rgxCurlyIgnoreAnchor, extUrlRefs)
 
-    let content = markdown
-    // Inject external URLs into placeholders
-    content = resolveVars(markdown, rgxCurlyIgnoreAnchor, extUrlRefs)
+  // Excape curly braces in Heading Anchors
+  content = escapeAnchorChars(content, rgxCurlyEscapeIncludeAnchor)
 
-    // Excape curly braces in Heading Anchors
-    content = escapeAnchorChars(content, rgxCurlyEscapeIncludeAnchor)
-
-    return content
+  return content
 }
 
-
-//NOTE - Additional RegEx for variable resolution
+/*NOTE - Additional RegEx options for url variables
 // Match ${myVar} styled placeholders
-const rgxDollaCurly = {
+/* const rgxDollaCurly = {
     search: /\$\{.*\}/g,
     replace: /(\$\{)(\})/g
-}
+} */
 
 // Match{{myVar}} styled placeholders
-const rgxDoubleCurly = {
+/* const rgxDoubleCurly = {
     search: /\{\{(?!#).*\}\}/g,
     replace: /(\{\{?)(\}\}?)/g
-}
-
-//TODO - Create preprocess.ts file + contents
+} */

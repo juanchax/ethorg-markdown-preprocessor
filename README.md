@@ -1,6 +1,6 @@
 # &#127798; Ethereum.org Website's External URLs &#127798;
 
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![status - in progress](https://img.shields.io/badge/status-inprogress-blue?style=for-the-badge)](#status) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![status - in progress](https://img.shields.io/badge/status-waiting_for_approval-yellow?style=for-the-badge)](#status) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [![ready for review](https://img.shields.io/badge/review-needed-orange?style=for-the-badge)](#pitch-idea)
 
 <br>
@@ -39,7 +39,7 @@ Parameterize references to external links, using some sort of variable injection
 
 ### &#127918; Use it!
 
-This is an isolated implementation of a preprocessor for [Ethereum.org Website](https://ethereum.org/)'s content Markdown files. The folder structure matches and/or mimics the ethorg's folder structure. 
+This is an isolated implementation of a preprocessor for [Ethereum.org Website](https://ethereum.org/)'s content Markdown files. The folder structure matches and/or mimics the ethorg's folder structure.
 
 ```md
 ethorg-markdown-preprocessor
@@ -57,7 +57,7 @@ ethorg-markdown-preprocessor
 │       ├── constants.ts
 │       └── variables.ts
 ├── README.md
-├── index.ts 
+├── index.ts
 ├── package-lock.json
 └── package.json
 ```
@@ -70,9 +70,9 @@ ethorg-markdown-preprocessor
 * `variables.ts` - File containing the variable refs in use in markdown content files . _Note: the uppermost variables defined in the file are already defined in the original, just copied here for reference+usage._
 * `export.ts` - Utility file containing the logic to export the processed md contents to a file; in the actual implementation the content us just fed to the subsequent build steps.
 * `import.ts`, `compile.ts`, `data.ts` - Minimal logic to mimic [ethereum-org-website](https://github.com/ethereum/ethereum-org-website) structure and execution.
-* `preprocess.ts` - **WiP** This is where the (_RegEx_) magic happens! 
+* `preprocess.ts` - **WiP** This is where the (_RegEx_) magic happens!
 
-### &#128295; Tools 
+### &#128295; Tools
 
 Here are some tools that are useful (or even cool) that were used while building this:
 
@@ -177,18 +177,31 @@ The idea is to apply a _modularity mindset_ and parameterize references to exter
 
 | Repo | Task | Status |
 | ----------- | ----------- | ----------- |
-| Test | Implement link ref variables in variables.ts | Done |
-| Test | Implement Markdown preprocessing logic | Done |
-| Test | Implement link ref placeholders in /contributing/index.md | Done |
-| Test | Move md preprocessing to 'preprocess.ts' file | Done |
-| Test | Test preprocessing variable resolution | Done |
-| Test | Test preprocessing heading anchors escaping | Done |
+| ethorg-markdown-preprocessor | Implement link ref variables in variables.ts | Done |
+| ethorg-markdown-preprocessor | Implement Markdown preprocessing logic | Done |
+| ethorg-markdown-preprocessor | Implement link ref placeholders in /contributing/index.md | Done |
+| ethorg-markdown-preprocessor | Move md preprocessing from `compile.ts` to `preprocess.ts` file | Done |
+| ethorg-markdown-preprocessor | Test preprocessing variable resolution | Done |
+| ethorg-markdown-preprocessor | Test preprocessing heading anchors escaping | Done |
+| ----------- | ----------- | ----------- |
+| ethereum-org-website | Implement link ref variables in variables.ts | Done |
+| ethereum-org-website | Implement Markdown preprocessing logic | Done |
+| ethereum-org-website | Implement link ref placeholders in /contributing/index.md | Done |
+| ethereum-org-website | Move md preprocessing from `compile.ts` to `preprocess.ts` file | Done |
 
 ### Next steps
 
-- [ ] Implement in forked repo test, and build locally to ensure nothing breaks.
+- [x] Implement in forked repo test, and build locally to ensure nothing breaks.
 
-- [ ] Test implementation
+- [x] Test implementation
+
+- [x] Create pull request
+
+- [x] Link [related issues](#pitch-idea) <->  PR
+
+#### Waiting on PR Aproval
+
+If everything looks good, and Ethereum.org Community Admins approve the refactor:
 
 - [ ] Create a complete list of md files
 
@@ -196,12 +209,8 @@ The idea is to apply a _modularity mindset_ and parameterize references to exter
 
 - [ ] Create any additional variables needed in 'variables.ts'
 
-- [ ] Build local
+- [ ] Test some more, double, triple check (?)
 
-- [ ] Test some more, double, triple check
+- [ ] Create new pull request
 
-If everything looks good, and Ethereum.org Community Admins are ok with this refactor:
-
-- [ ] Create pull request
-
-- [ ] Link [related issues](#pitch-idea) <->  PR
+- [ ] Link previous PR [related issues](#pitch-idea) <->  PR

@@ -53,11 +53,11 @@ These are few current tasks that you could help us solve and take responsibility
 
 If you wish to contribute in the [Translation Program](/contributing/translation-program/), we ask you to create an account on [Crowdin]({CROWDIN_PROJECT}). For everything else – adding or editing content or visuals to the website, fixing bugs, working on open tasks – you will need a [GitHub](https://github.com/) account.
 
-All updates are made via the GitHub PR process. This means you create a local copy of the website, make your changes and request to merge your changes. If you've never done this before, follow the instructions at the bottom of our [GitHub repository]({GITHUB_REPO_URL}).
+All updates are made via the GitHub PR process. This means you create a local copy of the website, make your changes and request to merge your changes. If you've never done this before, follow the instructions at the bottom of our [GitHub repository]({GITHUB_REPO}).
 
 You don't need permission to work on anything, but it's always best to let us know what you're planning to do. You can do this by:
 
-- Commenting on an issue or PR in [GitHub]({GITHUB_REPO_URL})
+- Commenting on an issue or PR in [GitHub]({GITHUB_REPO})
 - Messaging on our [Discord server]({EXT_DISCORD})
 
 Before contributing, make sure you're familiar with:
