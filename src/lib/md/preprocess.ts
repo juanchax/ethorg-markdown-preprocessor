@@ -75,9 +75,7 @@ const escapeAnchorChars = (
   let content = markdown
 
   // Catch empty markdown content
-  if (!content) {
-    return content
-  }
+  if (!content) { return content }
   content = content.replace(regex.search, regex.replace)
 
   return content
@@ -94,7 +92,7 @@ export async function preprocessMarkdown(markdown: string) {
   return content
 }
 
-/*NOTE - Additional RegEx options for url variables
+//NOTE: Additional RegEx options for url variables
 // Match ${myVar} styled placeholders
 /* const rgxDollaCurly = {
     search: /\$\{.*\}/g,
