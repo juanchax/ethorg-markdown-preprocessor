@@ -1,10 +1,15 @@
-/*SECTION - External URLs Reference */
+import { CROWDIN_PROJECT_URL, GITHUB_REPO_URL } from "./constants"
+
+/*NOTE: External URLs Reference
+*   1. Add/edit as needed
+*   2. add newly added vars to the exported obj 'EXT_URLS' at the bottom
+*/
+
 // Contributing urls
-const GITHUB_REPO_URL = "https://github.com/ethereum/ethereum-org-website"
-const CROWDIN_PROJECT = "https://crowdin.com/project/ethereum-org"
+const GITHUB_REPO = GITHUB_REPO_URL
+const CROWDIN_PROJECT = CROWDIN_PROJECT_URL
 
-
-const EXT_GITHUB_ISSUES = GITHUB_REPO_URL + '/issues'
+const EXT_GITHUB_ISSUES = GITHUB_REPO + '/issues'
 const EXT_GITHUB_ISSUES_GFI = EXT_GITHUB_ISSUES + '?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22'
 const EXT_GITHUB_FEATURE_REQUEST = EXT_GITHUB_ISSUES + '/new?assignees=&labels=Type%3A+Feature&template=feature_request.yaml&title='
 const EXT_DISCORD = "https://discord.gg/ethereum-org"
@@ -27,30 +32,31 @@ const EXT_TRANSLATORS_CH = 'https://www.notion.so/Ethereum-org-05375fe0a94c4214a
 const EXT_GALXE = 'https://app.galxe.com/quest/ethereumorg'
 const EXT_GALXE_DOCS = 'https://help.galxe.com'
 const EXT_GALXE_OATS = EXT_GALXE_DOCS + '/en/articles/9645630-create-quest-rewards#h_1c5d63ba03'
+// const EXT_GALXE_OATS = 'https://medium.com/galxe-news/introducing-galaxy-oat-on-chain-achievement-token-7e89779242b4'
 const EXT_GITPOAP = 'https://www.gitpoap.io'
 const EXT_DEVCON = 'https://devcon.org'
 const EXT_DEVCONNECT = 'https://devconnect.org'
 
-// External URLs -- Parameterize external URL references
+// External URLs -- Exported vars as an obj
 export const EXT_URLS = {
-  GITHUB_REPO_URL,
-  CROWDIN_PROJECT,
-  EXT_GITHUB_ISSUES,
-  EXT_GITHUB_ISSUES_GFI,
-  EXT_GITHUB_FEATURE_REQUEST,
-  EXT_DISCORD,
-  EXT_X,
-  EXT_CROWDIN_DOCS,
-  EXT_ISO_LANG_CODE,
-  EXT_MS_LANG_PORTAL,
-  EXT_LINGUEE,
-  EXT_PROZ_SEARCH,
-  EXT_EURO_TERMBANK,
-  EXT_TRANSLATORS_CH,
-  EXT_GALXE,
-  EXT_GALXE_DOCS,
-  EXT_GALXE_OATS,
-  EXT_GITPOAP,
-  EXT_DEVCON,
-  EXT_DEVCONNECT,
+    GITHUB_REPO,
+    CROWDIN_PROJECT,
+    EXT_GITHUB_ISSUES,
+    EXT_GITHUB_ISSUES_GFI,
+    EXT_GITHUB_FEATURE_REQUEST,
+    EXT_DISCORD,
+    EXT_X,
+    EXT_CROWDIN_DOCS,
+    EXT_ISO_LANG_CODE,
+    EXT_MS_LANG_PORTAL,
+    EXT_LINGUEE,
+    EXT_PROZ_SEARCH,
+    EXT_EURO_TERMBANK,
+    EXT_TRANSLATORS_CH,
+    EXT_GALXE,
+    EXT_GALXE_DOCS,
+    EXT_GALXE_OATS,
+    EXT_GITPOAP,
+    EXT_DEVCON,
+    EXT_DEVCONNECT,
 }
