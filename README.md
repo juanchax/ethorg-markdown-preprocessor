@@ -69,7 +69,7 @@ ethorg-markdown-preprocessor
 * `constants.ts` - File reference since constant base URLs are referenced in the `variables` file.
 * `variables.ts` - File containing the variable refs in use in markdown content files . _Note: the uppermost variables defined in the file are already defined in the original, just copied here for reference+usage._
 * `export.ts` - Utility file containing the logic to export the processed md contents to a file; in the actual implementation the content us just fed to the subsequent build steps.
-* `import.ts`, `compile.ts`, `data.ts` - Minimal logic to mimic [ethereum-org-website](https://github.com/ethereum/ethereum-org-website) structure and execution.
+* `import.ts`, `compile.ts`, `data.ts` - Minimal logic to mimic [ethereum-org-website](https://github.com/ethereum/ethereum-org-website) structure and execution flow.
 * `preprocess.ts` - **WiP** This is where the (_RegEx_) magic happens! 
 
 ### &#128295; Tools 
@@ -177,26 +177,29 @@ The idea is to apply a _modularity mindset_ and parameterize references to exter
 
 | Repo | Task | Status |
 | ----------- | ----------- | ----------- |
-| Test | Implement link ref variables in variables.ts | Done |
-| Test | Implement Markdown preprocessing logic | Done |
-| Test | Implement link ref placeholders in /contributing/index.md | Done |
-| Test | Move md preprocessing to 'preprocess.ts' file | Done |
-| Test | Test preprocessing variable resolution | Done |
-| Test | Test preprocessing heading anchors escaping | Done |
+| ethorg-markdown-preprocessor | Implement link ref variables in variables.ts | Done |
+| ethorg-markdown-preprocessor | Implement Markdown preprocessing logic | Done |
+| ethorg-markdown-preprocessor | Implement link ref placeholders in /contributing/index.md | Done |
+| ethorg-markdown-preprocessor | Move md preprocessing from `compile.ts` to `preprocess.ts` file | Done |
+| ethorg-markdown-preprocessor | Test preprocessing variable resolution | Done |
+| ethorg-markdown-preprocessor | Test preprocessing heading anchors escaping | Done |
+| ----------- | ----------- | ----------- |
+| ethereum-org-website | Implement link ref variables in variables.ts | Done |
+| ethereum-org-website | Implement Markdown preprocessing logic | Done |
+| ethereum-org-website | Implement link ref placeholders in /contributing/index.md | Done |
+| ethereum-org-website | Move md preprocessing from `compile.ts` to `preprocess.ts` file | Done |
 
 ### Next steps
 
-- [ ] Implement in forked repo test, and build locally to ensure nothing breaks.
+- [x] Implement in forked repo test, and build locally to ensure nothing breaks.
 
-- [ ] Test implementation
+- [x] Test implementation
 
 - [ ] Create a complete list of md files
 
 - [ ] Replace hardcoded urls with variable placeholders
 
 - [ ] Create any additional variables needed in 'variables.ts'
-
-- [ ] Build local
 
 - [ ] Test some more, double, triple check
 
